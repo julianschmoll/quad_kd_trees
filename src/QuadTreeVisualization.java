@@ -13,9 +13,10 @@ import javax.swing.JPanel;
  */
 public class QuadTreeVisualization extends JPanel {
     private QuadTree quadTree;
-    private static int WIDTH = 700;
-    private static int HEIGHT = 400;
-    private static boolean showLabels = false;
+    private static int SCALE_FACTOR = 2;
+    private static int WIDTH = 700 * SCALE_FACTOR;
+    private static int HEIGHT = 400 * SCALE_FACTOR;
+    private static boolean showLabels = true;
 
     /**
      * Constructor for QuadTreeVisualization.
@@ -36,8 +37,8 @@ public class QuadTreeVisualization extends JPanel {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 String label = parts[1];
-                int x = Integer.parseInt(parts[2]);
-                int y = Integer.parseInt(parts[3]);
+                int x = Integer.parseInt(parts[2])*SCALE_FACTOR;
+                int y = Integer.parseInt(parts[3])*SCALE_FACTOR;
                 System.out.println("Inserting point: " + label + " (" + x + ", " + y + ")");
                 quadTree.insert(new QuadTreeKnot(x, y, label));
             }
@@ -64,7 +65,7 @@ public class QuadTreeVisualization extends JPanel {
         JFrame frame = new JFrame();
         QuadTreeVisualization panel = new QuadTreeVisualization();
         frame.add(panel);
-        frame.setSize(WIDTH, HEIGHT);
+        frame.setSize(WIDTH + 50, HEIGHT + 50);
         frame.setTitle("QuadTree Visualization");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
