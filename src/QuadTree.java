@@ -3,8 +3,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.awt.color.*;
-import java.util.random.*;
 
 public class QuadTree {
     private final int MAX_CAPACITY = 4;
