@@ -75,15 +75,15 @@ public class KDTree {
      * Recursively draws the KDTree.
      * 
      * @param g graphics object
-     * @param node current node
+     * @param knot current knot
      * @param xMin minimum x coordinate
      * @param xMax  maximum x coordinate
      * @param yMin minimum y coordinate
      * @param yMax maximum y coordinate
      * @param depth depth of the KDTree
      */
-    private void draw(Graphics g, KDTreeKnot node, int xMin, int xMax, int yMin, int yMax, int depth) {
-        if (node == null) {
+    private void draw(Graphics g, KDTreeKnot knot, int xMin, int xMax, int yMin, int yMax, int depth) {
+        if (knot == null) {
             return;
         }
         Color red = Color.RED;
@@ -91,18 +91,18 @@ public class KDTree {
 
         g.setColor(black);
 
-        int x = node.point[0];
-        int y = node.point[1];
+        int x = knot.point[0];
+        int y = knot.point[1];
 
         int cd = depth % 2;
         if (cd == 0) {
             g.drawLine(x, yMin, x, yMax);
-            draw(g, node.left, xMin, x, yMin, yMax, depth + 1);
-            draw(g, node.right, x, xMax, yMin, yMax, depth + 1);
+            draw(g, knot.left, xMin, x, yMin, yMax, depth + 1);
+            draw(g, knot.right, x, xMax, yMin, yMax, depth + 1);
         } else {
             g.drawLine(xMin, y, xMax, y);
-            draw(g, node.left, xMin, xMax, yMin, y, depth + 1);
-            draw(g, node.right, xMin, xMax, y, yMax, depth + 1);
+            draw(g, knot.left, xMin, xMax, yMin, y, depth + 1);
+            draw(g, knot.right, xMin, xMax, y, yMax, depth + 1);
         }
 
         g.setColor(red);
@@ -110,7 +110,7 @@ public class KDTree {
 
         if (showLabels) {
             g.setColor(black);
-            g.drawString(node.label, x, y);
+            g.drawString(knot.label, x, y);
         }
     }
 }
