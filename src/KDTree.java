@@ -1,53 +1,108 @@
+/**
+ * KDTree
+ */
 import java.awt.Graphics;
 
+
+/**
+ * Data structure creating and drawing a KD Tree.
+ */
 public class KDTree {
     private KDTreeKnot root;
-    private int k;
+    private boolean showLabels;
 
-    public KDTree(int k) {
-        this.k = k;
+    /**
+     * Creates a new KDTree.
+     * 
+     * @param showLabels show labels of the points
+     */
+    public KDTree(boolean showLabels) {
         this.root = null;
+        this.showLabels = showLabels;
     }
 
-    public void insert(int[] point) {
-        root = insertRec(root, point, 0);
+    /**
+     * Inserts a new point into the KDTree.
+     * @param point coordinates of the point
+     * @param label label of the point
+     */
+    public void insert(int[] point, String label) {
+        root = insertRec(root, point, 0, label);
     }
 
-    private KDTreeKnot insertRec(KDTreeKnot root, int[] point, int depth) {
+    /**
+     * Recursively inserts a new point into the KDTree.
+     * 
+     * @param root root of the KDTree
+     * @param point coordinates of the point
+     * @param depth depth of the KDTree
+     * @param label label of the point
+     * 
+     * @return the root of the KDTree
+     */
+    private KDTreeKnot insertRec(KDTreeKnot root, int[] point, int depth, String label) {
         if (root == null) {
-            return new KDTreeKnot(point);
+            return new KDTreeKnot(point, label);
         }
 
-        int cd = depth % k;
+        int cd = depth % 2;
         if (point[cd] < root.point[cd]) {
-            root.left = insertRec(root.left, point, depth + 1);
+            root.left = insertRec(root.left, point, depth + 1, label);
         } else {
-            root.right = insertRec(root.right, point, depth + 1);
+            root.right = insertRec(root.right, point, depth + 1, label);
         }
 
         return root;
     }
 
+    /**
+     * Draws the KDTree.
+     * 
+     * @param g graphics object
+     * @param xMin minimum x coordinate
+     * @param xMax maximum x coordinate
+     * @param yMin minimum y coordinate
+     * @param yMax maximum y coordinate
+     * @param depth depth of the KDTree
+     */
     public void draw(Graphics g, int xMin, int xMax, int yMin, int yMax, int depth) {
-        drawRec(g, root, xMin, xMax, yMin, yMax, depth);
+        draw(g, root, xMin, xMax, yMin, yMax, depth);
     }
 
-    private void drawRec(Graphics g, KDTreeKnot node, int xMin, int xMax, int yMin, int yMax, int depth) {
+    /**
+     * Recursively draws the KDTree.
+     * 
+     * @param g graphics object
+     * @param node current node
+     * @param xMin minimum x coordinate
+     * @param xMax  maximum x coordinate
+     * @param yMin minimum y coordinate
+     * @param yMax maximum y coordinate
+     * @param depth depth of the KDTree
+     */
+    private void draw(Graphics g, KDTreeKnot node, int xMin, int xMax, int yMin, int yMax, int depth) {
         if (node == null) {
             return;
         }
 
-        int cd = depth % k;
+        int x = node.point[0];
+        int y = node.point[1];
+
+        int cd = depth % 2;
         if (cd == 0) {
-            g.drawLine(node.point[0], yMin, node.point[0], yMax);
-            drawRec(g, node.left, xMin, node.point[0], yMin, yMax, depth + 1);
-            drawRec(g, node.right, node.point[0], xMax, yMin, yMax, depth + 1);
+            g.drawLine(x, yMin, x, yMax);
+            draw(g, node.left, xMin, x, yMin, yMax, depth + 1);
+            draw(g, node.right, x, xMax, yMin, yMax, depth + 1);
         } else {
-            g.drawLine(xMin, node.point[1], xMax, node.point[1]);
-            drawRec(g, node.left, xMin, xMax, yMin, node.point[1], depth + 1);
-            drawRec(g, node.right, xMin, xMax, node.point[1], yMax, depth + 1);
+            g.drawLine(xMin, y, xMax, y);
+            draw(g, node.left, xMin, xMax, yMin, y, depth + 1);
+            draw(g, node.right, xMin, xMax, y, yMax, depth + 1);
         }
 
-        g.fillOval(node.point[0] - 2, node.point[1] - 2, 4, 4);
+        g.fillOval(x - 2, y - 2, 4, 4);
+
+        if (showLabels) {
+            g.drawString(node.label, x, y);
+        }
     }
 }
