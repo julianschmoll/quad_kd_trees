@@ -24,7 +24,7 @@ public class QuadTreeVisualization extends JPanel {
      */
     public QuadTreeVisualization() {
         quadTree = new QuadTree(0, 0, WIDTH, HEIGHT, showLabels);
-        readPointsFromFile("data/Points_100.txt");
+        readPointsFromFile("data/Points_10.txt");
     }
 
     /**
