@@ -1,3 +1,4 @@
+
 /**
  * Quad Tree data structure for 2D points.
  */
@@ -5,7 +6,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import java.awt.Color;
 
 /**
@@ -20,9 +20,10 @@ public class QuadTree {
 
     /**
      * Constructor for QuadTree.
-     * @param x x-coordinate of the QuadTree.
-     * @param y y-coordinate of the QuadTree.
-     * @param width width of the QuadTree.
+     * 
+     * @param x      x-coordinate of the QuadTree.
+     * @param y      y-coordinate of the QuadTree.
+     * @param width  width of the QuadTree.
      * @param height height of the QuadTree.
      */
     public QuadTree(int x, int y, int width, int height, boolean showLabels) {
@@ -51,7 +52,7 @@ public class QuadTree {
         southwest = new QuadTree(x, yHalf, halfWidth, halfHeight, showLabels);
 
         // Insert points here as well so capacity can be calculated correctly
-        for(QuadTreeKnot pKnot : knots){
+        for (QuadTreeKnot pKnot : knots) {
             northeast.insert(pKnot);
             northwest.insert(pKnot);
             southeast.insert(pKnot);
@@ -59,17 +60,11 @@ public class QuadTree {
         }
 
         divided = true;
-
-        for (QuadTreeKnot parentKnot : knots) {
-            northeast.insert(parentKnot);
-            northwest.insert(parentKnot);
-            southeast.insert(parentKnot);
-            southwest.insert(parentKnot);
-        }
     }
 
     /**
      * Insert a point into the QuadTree.
+     * 
      * @param knot the point to insert.
      */
     public void insert(QuadTreeKnot knot) {
@@ -96,6 +91,7 @@ public class QuadTree {
 
     /**
      * Draw the QuadTree.
+     * 
      * @param g the Graphics object to draw on.
      */
     public void draw(Graphics g) {
