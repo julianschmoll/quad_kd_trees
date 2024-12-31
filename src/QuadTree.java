@@ -4,6 +4,7 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import java.awt.Color;
 
@@ -58,6 +59,13 @@ public class QuadTree {
         }
 
         divided = true;
+
+        for (QuadTreeKnot parentKnot : knots) {
+            northeast.insert(parentKnot);
+            northwest.insert(parentKnot);
+            southeast.insert(parentKnot);
+            southwest.insert(parentKnot);
+        }
     }
 
     /**
@@ -91,10 +99,8 @@ public class QuadTree {
      * @param g the Graphics object to draw on.
      */
     public void draw(Graphics g) {
-        Color red = Color.RED;
-        Color black = Color.BLACK;
 
-        g.setColor(black);
+        g.setColor(Color.BLACK);
         g.drawRect(x, y, width, height);
 
         if (divided) {
@@ -105,7 +111,14 @@ public class QuadTree {
         }
 
         for (QuadTreeKnot knot : knots) {
-            g.setColor(red);
+
+            Random rand = new Random();
+            // Java 'Color' class takes 3 floats, from 0 to 1.
+            float red = rand.nextFloat();
+            float green = rand.nextFloat();
+            float blue = rand.nextFloat();
+            Color randomColor = new Color(red, green, blue);
+            g.setColor(randomColor);
             g.fillOval(knot.x, knot.y, 4, 4);
 
             if (showLabels) {
