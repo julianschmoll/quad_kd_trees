@@ -65,6 +65,7 @@ public class KDTreeVisualization extends JPanel {
         JFrame frame = new JFrame();
         KDTreeVisualization panel = new KDTreeVisualization();
         frame.add(panel);
+        frame.setTitle("KDTree Visualization");
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
