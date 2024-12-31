@@ -122,7 +122,7 @@ public class QuadTree {
             g.fillOval(knot.x, knot.y, 4, 4);
 
             if (showLabels) {
-                g.setColor(black);
+                g.setColor(Color.BLACK);
                 g.drawString(knot.label, knot.x, knot.y);
             }
         }
