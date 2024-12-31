@@ -66,7 +66,7 @@ public class QuadTreeVisualization extends JPanel {
         JFrame frame = new JFrame();
         QuadTreeVisualization panel = new QuadTreeVisualization();
         frame.add(panel);
-        frame.setSize(WIDTH, HEIGHT);
+        frame.setSize((WIDTH+50), (HEIGHT+50));
         frame.setTitle("QuadTree Visualization");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
