@@ -3,6 +3,8 @@
  */
 import java.awt.Graphics;
 
+import java.awt.Color;
+
 
 /**
  * Data structure creating and drawing a KD Tree.
@@ -84,6 +86,10 @@ public class KDTree {
         if (node == null) {
             return;
         }
+        Color red = Color.RED;
+        Color black = Color.BLACK;
+
+        g.setColor(black);
 
         int x = node.point[0];
         int y = node.point[1];
@@ -99,9 +105,11 @@ public class KDTree {
             draw(g, node.right, xMin, xMax, y, yMax, depth + 1);
         }
 
+        g.setColor(red);
         g.fillOval(x - 2, y - 2, 4, 4);
 
         if (showLabels) {
+            g.setColor(black);
             g.drawString(node.label, x, y);
         }
     }
