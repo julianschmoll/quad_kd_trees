@@ -1,10 +1,11 @@
+
 /**
  * Quad Tree data structure for 2D points.
  */
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 import java.awt.Color;
 
 /**
@@ -19,9 +20,10 @@ public class QuadTree {
 
     /**
      * Constructor for QuadTree.
-     * @param x x-coordinate of the QuadTree.
-     * @param y y-coordinate of the QuadTree.
-     * @param width width of the QuadTree.
+     * 
+     * @param x      x-coordinate of the QuadTree.
+     * @param y      y-coordinate of the QuadTree.
+     * @param width  width of the QuadTree.
      * @param height height of the QuadTree.
      */
     public QuadTree(int x, int y, int width, int height, boolean showLabels) {
@@ -50,7 +52,7 @@ public class QuadTree {
         southwest = new QuadTree(x, yHalf, halfWidth, halfHeight, showLabels);
 
         // Insert points here as well so capacity can be calculated correctly
-        for(QuadTreeKnot pKnot : knots){
+        for (QuadTreeKnot pKnot : knots) {
             northeast.insert(pKnot);
             northwest.insert(pKnot);
             southeast.insert(pKnot);
@@ -62,6 +64,7 @@ public class QuadTree {
 
     /**
      * Insert a point into the QuadTree.
+     * 
      * @param knot the point to insert.
      */
     public void insert(QuadTreeKnot knot) {
@@ -88,13 +91,12 @@ public class QuadTree {
 
     /**
      * Draw the QuadTree.
+     * 
      * @param g the Graphics object to draw on.
      */
     public void draw(Graphics g) {
-        Color red = Color.RED;
-        Color black = Color.BLACK;
 
-        g.setColor(black);
+        g.setColor(Color.BLACK);
         g.drawRect(x, y, width, height);
 
         if (divided) {
@@ -105,11 +107,18 @@ public class QuadTree {
         }
 
         for (QuadTreeKnot knot : knots) {
-            g.setColor(red);
+
+            Random rand = new Random();
+            // Java 'Color' class takes 3 floats, from 0 to 1.
+            float red = rand.nextFloat();
+            float green = rand.nextFloat();
+            float blue = rand.nextFloat();
+            Color randomColor = new Color(red, green, blue);
+            g.setColor(randomColor);
             g.fillOval(knot.x, knot.y, 4, 4);
 
             if (showLabels) {
-                g.setColor(black);
+                g.setColor(Color.BLACK);
                 g.drawString(knot.label, knot.x, knot.y);
             }
         }
