@@ -1,6 +1,10 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.awt.color.*;
+import java.util.random.*;
 
 public class QuadTree {
     private final int MAX_CAPACITY = 4;
@@ -26,6 +30,13 @@ public class QuadTree {
         southeast = new QuadTree(x + halfWidth, y + halfHeight, halfWidth, halfHeight);
         southwest = new QuadTree(x, y + halfHeight, halfWidth, halfHeight);
         divided = true;
+
+        for (QuadTreeKnot parentKnot : knots) {
+            northeast.insert(parentKnot);
+            northwest.insert(parentKnot);
+            southeast.insert(parentKnot);
+            southwest.insert(parentKnot);
+        }
     }
 
     public void insert(QuadTreeKnot knot) {
@@ -51,6 +62,7 @@ public class QuadTree {
     }
 
     public void draw(Graphics g) {
+        g.setColor(Color.BLACK);
         g.drawRect(x, y, width, height);
         if (divided) {
             northeast.draw(g);
@@ -59,6 +71,13 @@ public class QuadTree {
             southwest.draw(g);
         }
         for (QuadTreeKnot knot : knots) {
+            Random rand = new Random();
+            // Java 'Color' class takes 3 floats, from 0 to 1.
+            float red = rand.nextFloat();
+            float green = rand.nextFloat();
+            float blue = rand.nextFloat();
+            Color randomColor = new Color(red, green, blue);
+            g.setColor(randomColor);
             g.fillOval(knot.x, knot.y, 4, 4);
         }
     }

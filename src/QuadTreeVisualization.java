@@ -9,7 +9,7 @@ public class QuadTreeVisualization extends JPanel {
     public QuadTreeVisualization() {
         quadTree = new QuadTree(0, 0, 800, 800);
         Random rand = new Random();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             int x = rand.nextInt(800);
             int y = rand.nextInt(800);
             quadTree.insert(new QuadTreeKnot(x, y));
