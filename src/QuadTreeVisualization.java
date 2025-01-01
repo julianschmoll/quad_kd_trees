@@ -24,7 +24,7 @@ public class QuadTreeVisualization extends JPanel {
      */
     public QuadTreeVisualization() {
         quadTree = new QuadTree(0, 0, WIDTH, HEIGHT, showLabels);
-        readPointsFromFile("data/Points_10.txt");
+        readPointsFromFile("data/Points_100.txt");
     }
 
     /**
@@ -38,8 +38,8 @@ public class QuadTreeVisualization extends JPanel {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 String label = parts[1];
-                int x = Integer.parseInt(parts[2])*SCALE_FACTOR;
-                int y = Integer.parseInt(parts[3])*SCALE_FACTOR;
+                int x = Integer.parseInt(parts[2]) * SCALE_FACTOR;
+                int y = Integer.parseInt(parts[3]) * SCALE_FACTOR;
 
                 System.out.println("Inserting point: " + label + " (" + x + ", " + y + ")");
                 quadTree.insert(new QuadTreeKnot(x, y, label));

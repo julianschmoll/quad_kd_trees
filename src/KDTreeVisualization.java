@@ -1,3 +1,4 @@
+
 /**
  * KDTree Visualization
  */
@@ -37,10 +38,10 @@ public class KDTreeVisualization extends JPanel {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 String label = parts[1];
-                int x = Integer.parseInt(parts[2])*SCALE_FACTOR;
-                int y = Integer.parseInt(parts[3])*SCALE_FACTOR;
+                int x = Integer.parseInt(parts[2]) * SCALE_FACTOR;
+                int y = Integer.parseInt(parts[3]) * SCALE_FACTOR;
                 System.out.println("Inserting point: " + label + " (" + x + ", " + y + ")");
-                kdTree.insert(new int[]{x, y},label);
+                kdTree.insert(new int[] { x, y }, label);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,10 +1,10 @@
+
 /**
  * KDTree
  */
 import java.awt.Graphics;
 
 import java.awt.Color;
-
 
 /**
  * Data structure creating and drawing a KD Tree.
@@ -25,6 +25,7 @@ public class KDTree {
 
     /**
      * Inserts a new point into the KDTree.
+     * 
      * @param point coordinates of the point
      * @param label label of the point
      */
@@ -35,7 +36,7 @@ public class KDTree {
     /**
      * Recursively inserts a new point into the KDTree.
      * 
-     * @param root root of the KDTree
+     * @param root  root of the KDTree
      * @param point coordinates of the point
      * @param depth depth of the KDTree
      * @param label label of the point
@@ -60,11 +61,11 @@ public class KDTree {
     /**
      * Draws the KDTree.
      * 
-     * @param g graphics object
-     * @param xMin minimum x coordinate
-     * @param xMax maximum x coordinate
-     * @param yMin minimum y coordinate
-     * @param yMax maximum y coordinate
+     * @param g     graphics object
+     * @param xMin  minimum x coordinate
+     * @param xMax  maximum x coordinate
+     * @param yMin  minimum y coordinate
+     * @param yMax  maximum y coordinate
      * @param depth depth of the KDTree
      */
     public void draw(Graphics g, int xMin, int xMax, int yMin, int yMax, int depth) {
@@ -74,12 +75,12 @@ public class KDTree {
     /**
      * Recursively draws the KDTree.
      * 
-     * @param g graphics object
-     * @param knot current knot
-     * @param xMin minimum x coordinate
+     * @param g     graphics object
+     * @param knot  current knot
+     * @param xMin  minimum x coordinate
      * @param xMax  maximum x coordinate
-     * @param yMin minimum y coordinate
-     * @param yMax maximum y coordinate
+     * @param yMin  minimum y coordinate
+     * @param yMax  maximum y coordinate
      * @param depth depth of the KDTree
      */
     private void draw(Graphics g, KDTreeKnot knot, int xMin, int xMax, int yMin, int yMax, int depth) {
