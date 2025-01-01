@@ -115,7 +115,7 @@ public class QuadTree {
             float blue = rand.nextFloat();
             Color randomColor = new Color(red, green, blue);
             g.setColor(randomColor);
-            g.fillOval(knot.x, knot.y, 4, 4);
+            g.fillOval(knot.x - 2, knot.y - 2, 4, 4);
 
             if (showLabels) {
                 g.setColor(Color.BLACK);
