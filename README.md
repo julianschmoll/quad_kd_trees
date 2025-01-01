@@ -1,6 +1,6 @@
 # Quad and KD Trees in Java
 
-This project implements Quad Trees and KD Trees in Java. Those can be visualized in a GUI.
+This project implements Quad Trees and KD Trees in Java. Those can be visualized in a JPanel.
 
 ## Usage
 
